@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useFetch from '../hooks/useFetch'
 import { Card } from '../components'
 import { useSearchParams } from 'react-router-dom'
 import useTitle from '../hooks/useTitle'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const Search = ({apiPath}) => {
   const [searchParams]=useSearchParams();
   const queryTerm=searchParams.get("q");
@@ -10,6 +12,9 @@ const Search = ({apiPath}) => {
 
   const {data:movies}=useFetch(apiPath,queryTerm)
   const pageTitle= useTitle(`Search Result for ${queryTerm}`)
+  useEffect(()=>{
+    AOS.init()
+  },[])
 
   return (
     <main>

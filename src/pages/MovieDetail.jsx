@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom'
 import { useState,useEffect } from 'react'
 import useTitle from '../hooks/useTitle'
 import Backup from "../assests/images/backup.png"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 const MovieDetail = () => {
   const params=useParams();
@@ -18,13 +21,17 @@ const MovieDetail = () => {
       console.log(json)
     }
     fetchMovie();
+   
+      AOS.init();
+    
   },[])
+  
   return (
     <section className='flex justify-around flex-wrap py-5'>
-      <div className='max-w-sm'>
+      <div className='max-w-sm' data-aos="fade-right" data-aos-delay="300" >
         <img className='rounded' src={image} alt={movie.title}/>
       </div>
-      <div className='max-w-2xl text-gray-600 text-lg dark:text-white'>
+      <div className='max-w-2xl text-gray-600 text-lg dark:text-white' data-aos="fade-left" data-aos-delay="300">
         <h1 className='text-4xl font-bold my-3 text-center lg:text-left'>{movie.title}</h1>
         <p className='my-4'>{movie.overview}</p>
        
